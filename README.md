@@ -43,10 +43,10 @@ In theory, it is difficult to obtain the depth information from a  single pinhol
 The disparity describes the difference between the same pixel projected to two separated cameras. There are a few ways of stereo matching available in OpenCV to find disparity. The two methods tested in the project are stereo block-matching (StereoBM) and stereo semi-global block-matching (StereoSGBM). Figure 4 below shows the disparity map using the stereo block-matching method, while Figure 5 shows the disparity map using the stereo semi-global block-matching.
 
 <p ><img src="images/kitti4.png" style="height: 200px; width:1000px;"/> </p>
-<center> Figure 4: The disparity map using the stereo block-matching method </center><br>
+<center> Figure 4: The disparity map using the stereo block-matching method </center><br><br>
 
 <p ><img src="images/kitti5.png" style="height: 200px; width:1000px;"/> </p>
-<center> Figure 5: The disparity map using the stereo semi-global block-matching method </center><br>
+<center> Figure 5: The disparity map using the stereo semi-global block-matching method </center><br><br>
 
 The darker color indicates smaller disparity; however, the darkest color in the map (purple) indicates the regions that the matching method could not successfully detect. It is noticeable that there is one column on the left that the algorithm could not match, which makes sense because the two cameras are separated by a distance which will then cause a shift from the left camera to the right camera when recording images. Comparing the disparity maps rendered from the two methods, it is easy to tell that the semi-global block-matching method results in a smoother image with fewer dark gaps in the frame. However, the blocking-matching method only takes around 42 ms to process a frame, while the semi-global blocking-matching method takes 99 ms.  
 
@@ -67,7 +67,7 @@ Figures 7 and 8 show the two matching results using different feature extraction
 <center> Figure 7: The matching map of two frames using SIFT feature extraction </center><br>
 
 <p ><img src="images/kitti8.png" style="height: 200px; width:1000px;"/> </p>
-<center> Figure 8: The matching map of two frames using ORB feature extraction </center><br>
+<center> Figure 8: The matching map of two frames using ORB feature extraction </center><br><br>
 SIFT approach has a better performance which detects five times more than the features extracted by ORB. However, the ORB approach is approximately three times faster than SIFT regarding the processing time. For both methods, especially the SIFT methods, we can find some matching lines that are not horizontal, which are wrong since the feature detected would not move too much in the y-direction from frame to frame. Then a method was proposed by David Lowe to filter out some outliers. A ratio test was implemented to determine the level of distinctiveness of features. The test compares the ratios of the distance of two matched descriptors and generates a probability density function for correct and incorrect matches based on the ratio of distances. Figure 9 shows the plot of the probability density function.
 
 <p > <img src = "images/kitti9.png"/> </p>
